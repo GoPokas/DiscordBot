@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
+const DotEnv = require("dotenv").config();
 // const DiscordVoice = require("@discordjs/voice");
 
-const bottoken = "OTMwMjc3MDU3OTQwODI4MjAw.YdziBg.dfq9JkLLGdup49VK5zHboTCWzXA";
+const bottoken = process.env.TOKEN;
 
 const CastroID = "303902144027820043";
 const PeixeID = "605848360175403270";
