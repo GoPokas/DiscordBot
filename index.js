@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const DotEnv = require("dotenv").config();
-// const DiscordVoice = require("@discordjs/voice");
 
 const bottoken = process.env.TOKEN;
 
@@ -67,14 +66,4 @@ client.on("messageCreate", (message) => {
     );
   }
 });
-
-//Live server
 client.login(bottoken);
-
-var http = require("http");
-http
-  .createServer(function (req, res) {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end();
-  })
-  .listen(8080);
