@@ -6,8 +6,8 @@ abstract class PingCommand {
 	@Slash('test1', {
 		description: "Know bot's ping reading messages and discord API"
 	})
-	async ping(message: Message): Promise<void> {
-		message.reply(
+	async test1(message: Message) {
+		return message.reply(
 			`Seton a lagar: ${
 				Date.now() - message.createdTimestamp
 				/* FIX: API Ping */

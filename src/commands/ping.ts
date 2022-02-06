@@ -1,9 +1,10 @@
 import { Message } from 'discord.js';
-import { Discord, Slash } from 'discordx';
+import { Discord, SimpleCommand, Slash } from 'discordx';
 
 @Discord()
 abstract class PingCommand {
-	@Slash('ping', {
+	/* FIX: API Ping */
+	/* @Slash('ping', {
 		description: "Know bot's ping reading messages and discord API"
 	})
 	private ping(message: Message) {
@@ -11,8 +12,13 @@ abstract class PingCommand {
 		return message.reply(
 			`Seton a lagar: ${
 				Date.now() - message.createdTimestamp
-				/* FIX: API Ping */
 			}ms. Que é isto sequer(API): ${Math.round(2)}ms`
 		);
+	} */
+	@SimpleCommand('ping', {
+		prefix: ','
+	})
+	private ping(message: Message) {
+		return message.reply('Pong');
 	}
 }

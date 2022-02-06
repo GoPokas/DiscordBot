@@ -1,65 +1,57 @@
 import path from 'path';
 import { Intents, Interaction, Message } from 'discord.js';
-import { Client } from 'discordx';
+import { Client, Discord, Slash } from 'discordx';
 import { config } from './utils';
 import { importx } from '@discordx/importer';
 
-/* Function to Start the BOT */
-async function start() {
-	// Create a BOT client
-	const client = new Client({
-		/* Load Intents */
-		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
-	});
+// Create a BOT client
+const client = new Client({
+	/* Load Intents */
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
+});
 
-	/* When bot's ready to start */
-	client.once('ready', async () => {
-		// make sure all guilds are in cache
-		await client.guilds.fetch();
+/* When bot's ready to start */
+client.once('ready', async () => {
+	// make sure all guilds are in cache
+	await client.guilds.fetch();
 
-		/* Clear Application Cache */
-		await client.clearApplicationCommands();
+	/* Clear Application Cache */
+	await client.clearApplicationCommands();
 
-		/* Import all comamnds */
-		await importx('./src/commands/**/**.ts');
+	/* Import all comamnds */
+	await importx('./src/commands/**/**.ts');
 
-		/* Import all events */
-		await importx('./src/events/**/**.ts');
+	/* Import all events */
+	await importx('./src/events/**/**.ts');
 
-		/* Initialize Commands & Permissions */
-		await client.initApplicationCommands();
-		await client.initApplicationPermissions();
+	/* Initialize Commands & Permissions */
+	await client.initApplicationCommands();
+	await client.initApplicationPermissions();
+	await client.initGlobalApplicationCommands();
 
-		/* -------------------------------------------------------------------------- */
-		/*                                 Information                                */
-		/* -------------------------------------------------------------------------- */
+	/* -------------------------------------------------------------------------- */
+	/*                                 Information                                */
+	/* -------------------------------------------------------------------------- */
 
-		/* -------------------------------- Bot Info -------------------------------- */
-		console.log(
-			`🚀 Logged in as ( ${client.user?.username}#${client.user?.discriminator} ) < ${client.user?.id} >`
-		);
+	/* -------------------------------- Bot Info -------------------------------- */
+	console.log(
+		`🚀 Logged in as ( ${client.user?.username}#${client.user?.discriminator} ) < ${client.user?.id} >`
+	);
 
-		/* -------------------------------- Commands -------------------------------- */
-		console.log(`  > ${client.applicationCommands.length} commands loaded.`);
-		client.applicationCommands.map((cmd) => console.log(`     > ${cmd.name}`));
+	/* -------------------------------- Commands -------------------------------- */
+	console.log(`  > ${client.applicationCommands.length} commands loaded.`);
+	client.applicationCommands.map((cmd) => console.log(`     > ${cmd.name}`));
 
-		/* --------------------------------- Events --------------------------------- */
-		console.log(`  > ${client.events.length} events loaded.`);
-		client.events.map((cmd) => console.log(`     > ${cmd.event}`));
-	});
+	/* --------------------------------- Events --------------------------------- */
+	console.log(`  > ${client.events.length} events loaded.`);
+	client.events.map((cmd) => console.log(`     > ${cmd.event}`));
+});
 
-	client.on('interactionCreate', (interaction: Interaction) => {
-		client.executeInteraction(interaction);
-	});
+client.on('interactionCreate', (interaction: Interaction) => {
+	client.executeInteraction(interaction);
+});
 
-	client.on('messageCreate', (message: Message) => {
-		client.executeCommand(message);
-	});
-
-	config.token !== '' && (await client.login(config.token));
-}
-/* Start the BOT */
-start();
+config.token !== '' && client.login(config.token);
 
 //Random message when pinged
 /* client.on("messageCreate", (message) => {
