@@ -22,7 +22,4 @@ yarn dev # or npm dev
 
 ## Todo:
 
-- [ ] Interaction between BOT and commands / events
-- Commands
-  - [ ] Fix Ping
-- [ ] Fix Events
+- [x] Everything's working fine!
