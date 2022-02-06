@@ -29,6 +29,8 @@ async function start(): Promise<void> {
 			...client.guilds.cache.map((g) => g.id)
 		);
 
+		client.user?.setActivity('Clash Royale');
+
 		/* -------------------------------------------------------------------------- */
 		/*                                 Information                                */
 		/* -------------------------------------------------------------------------- */
