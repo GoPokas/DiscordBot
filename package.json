@@ -16,10 +16,12 @@
     "discord.js-commando": "^0.12.3",
     "discordx": "^9.1.15",
     "dotenv": "^10.0.0",
-    "nodemon": "^2.0.15",
-    "prettier": "^2.5.1",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.4.0"
+  },
+  "devDependencies": {
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "prettier": "^2.5.1",
+    "nodemon": "^2.0.15"
   }
 }
