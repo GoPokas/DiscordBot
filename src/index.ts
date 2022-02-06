@@ -1,69 +1,64 @@
-const Discord = require("discord.js");
-const DotEnv = require("dotenv").config();
+import 'reflect-metadata';
+import { Intents, Interaction, Message } from 'discord.js';
+import { Client } from 'discordx';
+import { config, readCommandsEvents } from './utils';
 
-const bottoken = process.env.TOKEN;
+async function start(): Promise<void> {
+	// Create a BOT client
+	const client = new Client({
+		/* Load Intents */
+		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
+	});
 
-const CastroID = "303902144027820043";
-const PeixeID = "605848360175403270";
-const TalinID = "486887211837685778";
-const PokasID = "247483052370952192";
-const DavidID = "684806232636260414";
+	/* When bot's ready to start */
+	client.once('ready', async () => {
+		/* Making sure guilds are in cache */
+		await client.guilds.fetch();
 
-const prefix = ",";
+		/* Initialize Commands */
+		await client.initApplicationCommands({
+			guild: { log: true },
+			global: { log: true }
+		});
 
-const client = new Discord.Client({
-  intents: ["GUILDS", "GUILD_MESSAGES"],
-});
+		/* Initialize Permissions */
+		await client.initApplicationPermissions(true);
 
-//Login check
-client.on("ready", () => {
-  console.log("Logged in as " + client.user.tag);
-});
+		/* clear all guild commands */
+		await client.clearApplicationCommands(
+			...client.guilds.cache.map((g) => g.id)
+		);
 
-//Random message when pinged
-client.on("messageCreate", (message) => {
-  if (message.author.bot) return false;
+		/* -------------------------------------------------------------------------- */
+		/*                                 Information                                */
+		/* -------------------------------------------------------------------------- */
 
-  if (message.mentions.has(client.user.id) && message.content.includes("")) {
-    //Choose a random number between 1 and 3
-    const random = Math.floor(Math.random() * 3) + 1;
-    let msg = message.content;
-    message.content = msg.toLowerCase();
-    if (message.content.includes("mario")) {
-      message.channel.send("É quem comeu a tua mãe atrás do armário");
-    } else if (random === 1) {
-      message.reply("Dá-me magos elétricos.");
-    } else if (random === 2) {
-      message.reply("Famum bico.");
-    } else if (random === 3) {
-      message.reply("*Começa a tremer que nem um maluco*");
-    }
-  }
-});
+		/* -------------------------------- Bot Info -------------------------------- */
+		console.log(
+			`🚀 Logged in as ( ${client.user?.username}#${client.user?.discriminator} ) < ${client.user?.id} >`
+		);
 
-//Specific messages depending on who is pinged
-client.on("messageCreate", (message) => {
-  if (message.author.bot) return false;
+		/* -------------------------------- Commands -------------------------------- */
+		console.log(`  > ${client.applicationCommands.length} commands loaded:`);
+		client.applicationCommands.map((cmd) => console.log(`     > ${cmd.name}`));
 
-  if (message.mentions.has(CastroID)) {
-    message.channel.send("Oh Castor Informático, famum bico.");
-  }
-  if (message.mentions.has(TalinID) || message.mentions.has(PeixeID)) {
-    message.channel.send("Entra aí no meu clã.");
-  }
-});
+		/* --------------------------------- Events --------------------------------- */
+		console.log(`  > ${client.events.length} events loaded:`);
+		client.events.map((cmd) => console.log(`     > ${cmd.event}`));
+	});
 
-//Returns response time when pinged
-client.on("messageCreate", (message) => {
-  if (
-    message.content.includes === "ping" ||
-    message.content.startsWith(prefix)
-  ) {
-    message.channel.send(
-      `Estou a lagar: ${
-        Date.now() - message.createdTimestamp
-      }ms. Que é isto sequer(API): ${Math.round(client.ws.ping)}ms`
-    );
-  }
-});
-client.login(bottoken);
+	client.on('interactionCreate', (interaction: Interaction) => {
+		if (interaction.user.bot) return;
+		client.executeInteraction(interaction);
+	});
+
+	client.on('messageCreate', (message: Message) => {
+		if (message.author.bot) return;
+		client.executeCommand(message);
+	});
+
+	await readCommandsEvents();
+
+	config.token !== '' && (await client.login(config.token));
+}
+start();
