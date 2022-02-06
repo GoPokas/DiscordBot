@@ -41,7 +41,9 @@
 		"@typescript-eslint/no-explicit-any": ["error"],
 		"@typescript-eslint/no-require-imports": ["warn"],
 		"@typescript-eslint/no-unnecessary-type-assertion": ["warn"],
-		"@typescript-eslint/no-unused-vars": ["warn"],
+		"@typescript-eslint/no-unused-vars": ["warn", {
+			"argsIgnorePattern": "^_"
+		}],
 		"@typescript-eslint/prefer-as-const": ["warn"],
 		"@typescript-eslint/prefer-for-of": ["warn"],
 		"@typescript-eslint/prefer-reduce-type-parameter": ["warn"],

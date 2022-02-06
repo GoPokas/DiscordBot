@@ -1,3 +1,4 @@
+import { importx } from '@discordx/importer';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -15,4 +16,16 @@ const config = {
 	}
 };
 
-export { config };
+async function readCommandsEvents(): Promise<void> {
+	/* Import all comamnds */
+	importx('./src/commands/**/**.ts');
+
+	/* Import all events */
+	importx('./src/events/**/**.ts');
+}
+
+function genRandomNumber(min: number, max: number): number {
+	return Math.floor(Math.random() * max) + 1;
+}
+
+export { config, readCommandsEvents, genRandomNumber };

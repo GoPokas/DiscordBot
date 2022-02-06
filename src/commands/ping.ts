@@ -1,24 +1,17 @@
 import { Message } from 'discord.js';
-import { Discord, SimpleCommand, Slash } from 'discordx';
+import { Client, Discord, Slash } from 'discordx';
 
 @Discord()
-abstract class PingCommand {
-	/* FIX: API Ping */
-	/* @Slash('ping', {
+export abstract class PingCommand {
+	@Slash('ping', {
 		description: "Know bot's ping reading messages and discord API"
 	})
-	private ping(message: Message) {
-		console.log('ping command');
+	private async ping(message: Message, client: Client): Promise<Message> {
 		return message.reply(
-			`Seton a lagar: ${
+			`Tou a lagar: ${
+				/* FIX: Tou a lagar XXXXX ms ... */
 				Date.now() - message.createdTimestamp
-			}ms. Que é isto sequer(API): ${Math.round(2)}ms`
+			}ms. Que é isto sequer(API): ${client.ws.ping}ms`
 		);
-	} */
-	@SimpleCommand('ping', {
-		prefix: ','
-	})
-	private ping(message: Message) {
-		return message.reply('Pong');
 	}
 }

@@ -1,17 +1,37 @@
-import { Message } from 'discord.js';
-import { Discord, Slash } from 'discordx';
+/* eslint-disable one-var */
+import { ArgsOf, Client, Discord, GuardFunction, On } from 'discordx';
+import { messagesRandom, messagesWithSpecificContent } from '../messages';
+import { genRandomNumber } from '../utils';
 
 @Discord()
-abstract class PingCommand {
-	@Slash('test1', {
-		description: "Know bot's ping reading messages and discord API"
-	})
-	async test1(message: Message) {
-		return message.reply(
-			`Seton a lagar: ${
-				Date.now() - message.createdTimestamp
-				/* FIX: API Ping */
-			}ms. Que é isto sequer(API): ${Math.round(2)}ms`
-		);
+export abstract class UserMention {
+	@On('messageCreate')
+	private async onMessage(
+		[message]: ArgsOf<'messageCreate'>, // Type message automatically
+		client: Client, // Client instance injected here,
+		_guardPayload: GuardFunction
+	): Promise<void> {
+		if (client.user)
+			if (message.content.includes(client.user.id)) {
+				if (message.content.toLocaleLowerCase().includes('mario')) {
+					const cont = messagesWithSpecificContent.filter(
+						(fil) => fil.options?.specificContent === 'mario'
+					);
+					const randomNumber: number = genRandomNumber(1, cont.length) - 1;
+					message.reply(cont[randomNumber].message);
+					return;
+				}
+				if (message.content.toLocaleLowerCase().includes('boda')) {
+					const cont = messagesWithSpecificContent.filter(
+						(fil) => fil.options?.specificContent === 'boda'
+					);
+					const randomNumber: number = genRandomNumber(1, cont.length) - 1;
+					message.reply(cont[randomNumber].message);
+					return;
+				}
+				const randomNumber: number =
+					genRandomNumber(1, messagesRandom.length) - 1;
+				await message.reply(messagesRandom[randomNumber].message);
+			}
 	}
 }
