@@ -1,27 +1,68 @@
-const Discord = require("discord.js");
-const DotEnv = require("dotenv").config();
+import path from 'path';
+import { Intents, Interaction, Message } from 'discord.js';
+import { Client } from 'discordx';
+import { config } from './utils';
+import { importx } from '@discordx/importer';
 
-const bottoken = process.env.TOKEN;
+/* Function to Start the BOT */
+async function start() {
+	// Create a BOT client
+	const client = new Client({
+		/* Load Intents */
+		intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
+	});
 
-const CastroID = "303902144027820043";
-const PeixeID = "605848360175403270";
-const TalinID = "486887211837685778";
-const PokasID = "247483052370952192";
-const DavidID = "684806232636260414";
+	/* When bot's ready to start */
+	client.once('ready', async () => {
+		// make sure all guilds are in cache
+		await client.guilds.fetch();
 
-const prefix = ",";
+		/* Clear Application Cache */
+		await client.clearApplicationCommands();
 
-const client = new Discord.Client({
-  intents: ["GUILDS", "GUILD_MESSAGES"],
-});
+		/* Import all comamnds */
+		await importx('./src/commands/**/**.ts');
 
-//Login check
-client.on("ready", () => {
-  console.log("Logged in as " + client.user.tag);
-});
+		/* Import all events */
+		await importx('./src/events/**/**.ts');
+
+		/* Initialize Commands & Permissions */
+		await client.initApplicationCommands();
+		await client.initApplicationPermissions();
+
+		/* -------------------------------------------------------------------------- */
+		/*                                 Information                                */
+		/* -------------------------------------------------------------------------- */
+
+		/* -------------------------------- Bot Info -------------------------------- */
+		console.log(
+			`🚀 Logged in as ( ${client.user?.username}#${client.user?.discriminator} ) < ${client.user?.id} >`
+		);
+
+		/* -------------------------------- Commands -------------------------------- */
+		console.log(`  > ${client.applicationCommands.length} commands loaded.`);
+		client.applicationCommands.map((cmd) => console.log(`     > ${cmd.name}`));
+
+		/* --------------------------------- Events --------------------------------- */
+		console.log(`  > ${client.events.length} events loaded.`);
+		client.events.map((cmd) => console.log(`     > ${cmd.event}`));
+	});
+
+	client.on('interactionCreate', (interaction: Interaction) => {
+		client.executeInteraction(interaction);
+	});
+
+	client.on('messageCreate', (message: Message) => {
+		client.executeCommand(message);
+	});
+
+	config.token !== '' && (await client.login(config.token));
+}
+/* Start the BOT */
+start();
 
 //Random message when pinged
-client.on("messageCreate", (message) => {
+/* client.on("messageCreate", (message) => {
   if (message.author.bot) return false;
 
   if (message.mentions.has(client.user.id) && message.content.includes("")) {
@@ -39,10 +80,10 @@ client.on("messageCreate", (message) => {
       message.reply("*Começa a tremer que nem um maluco*");
     }
   }
-});
+}); */
 
 //Specific messages depending on who is pinged
-client.on("messageCreate", (message) => {
+/* client.on("messageCreate", (message) => {
   if (message.author.bot) return false;
 
   if (message.mentions.has(CastroID)) {
@@ -51,10 +92,10 @@ client.on("messageCreate", (message) => {
   if (message.mentions.has(TalinID) || message.mentions.has(PeixeID)) {
     message.channel.send("Entra aí no meu clã.");
   }
-});
+}); */
 
 //Returns response time when pinged
-client.on("messageCreate", (message) => {
+/* client.on("messageCreate", (message) => {
   if (
     message.content.includes === "ping" ||
     message.content.startsWith(prefix)
@@ -65,5 +106,4 @@ client.on("messageCreate", (message) => {
       }ms. Que é isto sequer(API): ${Math.round(client.ws.ping)}ms`
     );
   }
-});
-client.login(bottoken);
+}); */

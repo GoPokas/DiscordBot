@@ -1,3 +1,12 @@
-.env
-package-lock.json
+
+
+
+# Useless folders
 node_modules/
+.vscode/
+
+# Package Lock
+package-lock.json
+
+# ENV File
+.env
