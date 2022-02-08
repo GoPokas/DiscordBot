@@ -18,7 +18,7 @@ export abstract class UserMention {
 						(fil) => fil.options?.specificContent === 'mario'
 					);
 					const randomNumber: number = genRandomNumber(1, cont.length) - 1;
-					message.reply(cont[randomNumber].message);
+					cont.length > 0 && message.reply(cont[randomNumber].message);
 					return;
 				}
 				if (message.content.toLocaleLowerCase().includes('boda')) {
@@ -26,12 +26,13 @@ export abstract class UserMention {
 						(fil) => fil.options?.specificContent === 'boda'
 					);
 					const randomNumber: number = genRandomNumber(1, cont.length) - 1;
-					message.reply(cont[randomNumber].message);
+					cont.length > 0 && message.reply(cont[randomNumber].message);
 					return;
 				}
 				const randomNumber: number =
 					genRandomNumber(1, messagesRandom.length) - 1;
-				await message.reply(messagesRandom[randomNumber].message);
+				messagesRandom.length > 0 &&
+					message.reply(messagesRandom[randomNumber].message);
 			}
 	}
 }
