@@ -19,6 +19,9 @@ export const messagesRandom: MessagesType = [
 	},
 	{
 		message: '*Começa a tremer que nem um maluco*'
+	},
+	{
+		message: 'Ouuuu queres que te foda?'
 	}
 ];
 
