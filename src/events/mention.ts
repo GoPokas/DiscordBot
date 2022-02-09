@@ -32,7 +32,12 @@ export abstract class UserMention {
 				const randomNumber: number =
 					genRandomNumber(1, messagesRandom.length) - 1;
 				messagesRandom.length > 0 &&
-					message.reply(messagesRandom[randomNumber].message);
+					message.reply({
+						content: messagesRandom[randomNumber].message,
+						allowedMentions: {
+							repliedUser: false
+						}
+					});
 			}
 	}
 }
