@@ -20,7 +20,7 @@ export abstract class PingCommand {
 					value: `\`${client.ws.ping}ms\``
 				}
 			)
-			.setFooter({ text: `Requested by ${message.author.tag}` });
+			.setFooter({ text: `Requested by ${message.author.id}` });
 
 		return message.reply({ embeds: [embed] });
 
