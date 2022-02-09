@@ -22,7 +22,12 @@ export abstract class PingCommand {
 			);
 		// .setFooter({ text: `Requested by ${message.author.id}` });
 
-		return message.reply({ embeds: [embed] });
+		return message.reply({
+			embeds: [embed] ,
+			allowedMentions: {
+				repliedUser: false
+			}
+		});
 
 		// return message.reply(
 		// 	`Tou a lagar: ${
