@@ -16,7 +16,6 @@ export abstract class UserMention {
 				const msgs = messagesWithUser.filter((fil) =>
 					fil.options?.user.find((user) => message.mentions.has(user.id))
 				);
-
 				const randomNumber: number = genRandomNumber(1, msgs.length) - 1;
 
 				msgs.length > 0 &&

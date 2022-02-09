@@ -71,7 +71,7 @@ export const messagesWithUser = [
 		}
 	},
 	{
-		messsage: 'OHH POKINHAS, FAMUM BICO',
+		message: 'OHH POKINHAS, FAMUM BICO',
 		options: {
 			user: [
 				{
