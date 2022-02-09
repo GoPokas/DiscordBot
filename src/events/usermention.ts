@@ -12,44 +12,44 @@ export abstract class UserMention {
 		_guardPayload: GuardFunction
 	): Promise<void> {
 		if (client.user) {
-			if (message.content.includes(config.userIDs.CastroID)) {
+			if (message.content.includes(config.userIDs.Castro)) {
 				const msgs = messagesWithUser.filter((fil) =>
-					fil.options.user.find((user) => user.id === config.userIDs.CastroID)
+					fil.options.user.find((user) => user.id === config.userIDs.Castro)
 				);
 				const rdmNumber = genRandomNumber(1, msgs.length) - 1;
 				msgs.length > 0 && message.reply(msgs[rdmNumber].message);
 			}
-			if (message.content.includes(config.userIDs.DavidID)) {
+			if (message.content.includes(config.userIDs.David)) {
 				const msgs = messagesWithUser.filter((fil) =>
-					fil.options.user.find((user) => user.id === config.userIDs.DavidID)
+					fil.options.user.find((user) => user.id === config.userIDs.David)
 				);
 				const rdmNumber = genRandomNumber(1, msgs.length) - 1;
 				msgs.length > 0 && message.reply(msgs[rdmNumber].message);
 			}
-			if (message.content.includes(config.userIDs.PapiroID)) {
+			if (message.content.includes(config.userIDs.Papiro)) {
 				const msgs = messagesWithUser.filter((fil) =>
-					fil.options.user.find((user) => user.id === config.userIDs.PapiroID)
+					fil.options.user.find((user) => user.id === config.userIDs.Papiro)
 				);
 				const rdmNumber = genRandomNumber(1, msgs.length) - 1;
 				msgs.length > 0 && message.reply(msgs[rdmNumber].message);
 			}
-			if (message.content.includes(config.userIDs.PeixeID)) {
+			if (message.content.includes(config.userIDs.Peixe)) {
 				const msgs = messagesWithUser.filter((fil) =>
-					fil.options.user.find((user) => user.id === config.userIDs.PeixeID)
+					fil.options.user.find((user) => user.id === config.userIDs.Peixe)
 				);
 				const rdmNumber = genRandomNumber(1, msgs.length) - 1;
 				msgs.length > 0 && message.reply(msgs[rdmNumber].message);
 			}
-			if (message.content.includes(config.userIDs.PokasID)) {
+			if (message.content.includes(config.userIDs.Pokas)) {
 				const msgs = messagesWithUser.filter((fil) =>
-					fil.options.user.find((user) => user.id === config.userIDs.PokasID)
+					fil.options.user.find((user) => user.id === config.userIDs.Pokas)
 				);
 				const rdmNumber = genRandomNumber(1, msgs.length) - 1;
 				msgs.length > 0 && message.reply(msgs[rdmNumber].message);
 			}
-			if (message.content.includes(config.userIDs.TalinID)) {
+			if (message.content.includes(config.userIDs.Talin)) {
 				const msgs = messagesWithUser.filter((fil) =>
-					fil.options.user.find((user) => user.id === config.userIDs.TalinID)
+					fil.options.user.find((user) => user.id === config.userIDs.Talin)
 				);
 				const rdmNumber = genRandomNumber(1, msgs.length) - 1;
 				msgs.length > 0 && message.reply(msgs[rdmNumber].message);
