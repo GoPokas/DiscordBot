@@ -9,7 +9,7 @@ export abstract class PingCommand {
 	private async ping(message: Message, client: Client): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle('Pong!')
-			.setColor('#0099ff')
+			.setColor('#E6E6FA')
 			.setFields(
 				{
 					name: 'Bot',
@@ -19,8 +19,8 @@ export abstract class PingCommand {
 					name: 'API',
 					value: `\`${client.ws.ping}ms\``
 				}
-			)
-			// .setFooter({ text: `Requested by ${message.author.id}` });
+			);
+		// .setFooter({ text: `Requested by ${message.author.id}` });
 
 		return message.reply({ embeds: [embed] });
 
