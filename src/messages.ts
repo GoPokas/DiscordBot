@@ -37,6 +37,12 @@ export const messagesWithSpecificContent: MessagesType = [
 		options: {
 			specificContent: 'boda'
 		}
+	},
+	{
+		message: 'Ama alen boi',
+		options: {
+			specificContent: 'island boy'
+		}
 	}
 ];
 
@@ -46,7 +52,7 @@ export const messagesWithUser = [
 		options: {
 			user: [
 				{
-					id: config.userIDs.CastroID
+					id: config.userIDs.Castro
 				}
 			]
 		}
@@ -56,10 +62,20 @@ export const messagesWithUser = [
 		options: {
 			user: [
 				{
-					id: config.userIDs.PeixeID
+					id: config.userIDs.Peixe
 				},
 				{
-					id: config.userIDs.TalinID
+					id: config.userIDs.Talin
+				}
+			]
+		}
+	},
+	{
+		messsage: 'OHH POKINHAS, FAMUM BICO',
+		options: {
+			user: [
+				{
+					id: config.userIDs.Pokas
 				}
 			]
 		}
