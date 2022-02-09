@@ -9,7 +9,7 @@ export abstract class PingCommand {
 	private async ping(message: Message, client: Client): Promise<Message> {
 		const embed = new MessageEmbed()
 			.setTitle('Pong!')
-			.setColor('#E6E6FA')
+			.setColor('#9370DB')
 			.setFields(
 				{
 					name: 'Bot',
