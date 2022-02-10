@@ -1,7 +1,7 @@
 /* eslint-disable one-var */
 import { ArgsOf, Client, Discord, GuardFunction, On } from 'discordx';
-import { config, genRandomNumber } from '../utils';
-import { messagesWithUser } from '../messages';
+import { genRandomNumber } from '../utils.js';
+import { messagesWithUser } from '../messages.js';
 
 @Discord()
 export abstract class UserMention {

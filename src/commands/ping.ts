@@ -20,20 +20,12 @@ export abstract class PingCommand {
 					value: `\`${client.ws.ping}ms\``
 				}
 			);
-		// .setFooter({ text: `Requested by ${message.author.id}` });
 
 		return message.reply({
-			embeds: [embed] ,
+			embeds: [embed],
 			allowedMentions: {
 				repliedUser: false
 			}
 		});
-
-		// return message.reply(
-		// 	`Tou a lagar: ${
-		// 		/* FIX: Tou a lagar XXXXX ms ... */
-		// 		Date.now() - message.createdTimestamp
-		// 	}ms. Que é isto sequer(API): ${client.ws.ping}ms`
-		// );
 	}
 }

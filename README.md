@@ -2,7 +2,7 @@
 
 ## Start the BOT
 
-2 Types to start the bot:
+2 Ways to start the bot:
 
 ### Production
 
@@ -22,4 +22,8 @@ yarn dev # or npm dev
 
 ## Todo:
 
-- [x] Everything's working fine!
+- `package.json`
+  - [ ] Fix Dev Run Script
+- `src/commands/purge.ts`
+  - [ ] Error Handler
+    - Right now it's handling with try/catch and replying the error.
