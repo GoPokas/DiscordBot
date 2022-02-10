@@ -1,4 +1,4 @@
-import { config } from './utils';
+import { config } from './utils.js';
 
 type MessagesType = Array<{
 	message: string;
@@ -11,6 +11,9 @@ type MessagesType = Array<{
 }>;
 
 export const messagesRandom: MessagesType = [
+	{
+		message: 'Dá-me magos elétricos.'
+	},
 	{
 		message: 'Dá-me magos elétricos.'
 	},

@@ -20,10 +20,10 @@ const config = {
 
 async function readCommandsEvents(): Promise<void> {
 	/* Import all comamnds */
-	importx('./src/commands/**/**.ts');
+	await importx('./src/commands/**/**.ts');
 
 	/* Import all events */
-	importx('./src/events/**/**.ts');
+	await importx('./src/events/**/**.ts');
 }
 
 function genRandomNumber(min: number, max: number): number {
