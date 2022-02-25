@@ -12,9 +12,9 @@ export abstract class AboutCommand {
 			.setColor('#9370DB')
 			.setFields({
 				name: 'Commands',
-				value: client.applicationCommands
+				value: `${client.applicationCommands
 					.map((cmd) => `\`${cmd.name}\` - ${cmd.description}`)
-					.join('\n')
+					.join('\n')}`
 			});
 		return message.reply({
 			embeds: [embed],
