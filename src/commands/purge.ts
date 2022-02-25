@@ -11,7 +11,7 @@ import { Client, Discord, Slash, SlashOption } from 'discordx';
 @Discord()
 export abstract class PurgeCommand {
 	@Slash('purge', {
-		description: 'Purges a certain amout of messages (User can be specified)'
+		description: 'Purges a certain amount of messages (User can be specified)'
 	})
 	private async purge(
 		@SlashOption('amount', {
