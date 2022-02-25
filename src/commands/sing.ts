@@ -4,7 +4,7 @@ import { Client, Discord, Slash } from 'discordx';
 @Discord()
 export abstract class SingCommand {
 	@Slash('sing', {
-		description: 'Sing!'
+		description: 'Replies with a pre-determined video.'
 	})
 	private async sing(message: Message, client: Client): Promise<Message> {
 		const attachment = new MessageAttachment('./assets/dami.mp4');

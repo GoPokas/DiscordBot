@@ -4,7 +4,7 @@ import { Client, Discord, Slash } from 'discordx';
 @Discord()
 export abstract class PingCommand {
 	@Slash('ping', {
-		description: 'Pong!'
+		description: 'Returns the bots and the bots API ping.'
 	})
 	private async ping(message: Message, client: Client): Promise<Message> {
 		const embed = new MessageEmbed()
