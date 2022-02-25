@@ -33,7 +33,7 @@ export abstract class PurgeCommand {
 			!message.member?.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES) ||
 			!message.member?.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
 		)
-			message.reply('You do not have permission to use this command');
+			return message.reply('You do not have permission to use this command');
 
 		if (!amount || amount < 1) return message.reply('Invalid amount');
 
